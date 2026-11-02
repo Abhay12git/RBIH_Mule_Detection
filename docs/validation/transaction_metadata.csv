@@ -1,0 +1,9 @@
+column,dtype,null_count,null_pct,unique_values
+transaction_id,str,0,0.0,100000
+account_id,str,0,0.0,44
+transaction_timestamp,str,0,0.0,98379
+mcc_code,int64,0,0.0,58
+channel,str,0,0.0,35
+amount,float64,0,0.0,50793
+txn_type,str,0,0.0,2
+counterparty_id,str,0,0.0,671

@@ -1,0 +1,7 @@
+raw_data: data/raw
+features: data/features
+graph: data/graph
+processed: data/processed
+final: data/final
+models: models
+reports: reports

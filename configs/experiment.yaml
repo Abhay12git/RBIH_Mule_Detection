@@ -1,0 +1,4 @@
+random_seed: 42
+train_split: 0.70
+val_split: 0.15
+test_split: 0.15

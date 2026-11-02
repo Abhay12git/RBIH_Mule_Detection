@@ -1,0 +1,10 @@
+column_name,dtype
+branch_code,int64
+branch_address,str
+branch_pin_code,int64
+branch_city,str
+branch_state,str
+branch_employee_count,int64
+branch_turnover,float64
+branch_asset_size,float64
+branch_type,str

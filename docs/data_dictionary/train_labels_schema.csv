@@ -1,0 +1,6 @@
+column_name,dtype
+account_id,str
+is_mule,int64
+mule_flag_date,str
+alert_reason,str
+flagged_by_branch,float64

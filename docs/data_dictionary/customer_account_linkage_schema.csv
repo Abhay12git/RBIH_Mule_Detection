@@ -1,0 +1,3 @@
+column_name,dtype
+customer_id,str
+account_id,str

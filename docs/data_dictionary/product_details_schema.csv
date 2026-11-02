@@ -1,0 +1,12 @@
+column_name,dtype
+customer_id,str
+loan_sum,float64
+loan_count,int64
+cc_sum,float64
+cc_count,int64
+od_sum,float64
+od_count,int64
+ka_sum,float64
+ka_count,int64
+sa_sum,float64
+sa_count,int64

@@ -1,0 +1,43 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+data/raw/
+data/interim/
+data/processed/
+data/features/
+data/graph/
+data/final/
+
+models/
+logs/
+
+*.parquet
+*.pt
+*.pkl
+
+.vscode/
+# Generated Data
+data/features/
+data/graph/
+data/final/
+data/interim/
+data/processed/
+
+# Models
+models/
+*.pkl
+*.pt
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# Logs
+logs/
+
+# Large Raw Data
+data/raw/
+
+# Notebook Checkpoints
+.ipynb_checkpoints/

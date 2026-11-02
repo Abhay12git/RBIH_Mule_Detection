@@ -1,0 +1,15 @@
+column_name,dtype
+customer_id,str
+date_of_birth,str
+relationship_start_date,str
+pan_available,str
+aadhaar_available,str
+passport_available,str
+mobile_banking_flag,str
+internet_banking_flag,str
+atm_card_flag,str
+demat_flag,str
+credit_card_flag,str
+fastag_flag,str
+customer_pin,int64
+permanent_pin,int64

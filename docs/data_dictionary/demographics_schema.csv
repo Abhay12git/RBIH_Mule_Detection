@@ -1,0 +1,10 @@
+column_name,dtype
+customer_id,str
+name,str
+gender,str
+address_last_update_date,str
+address,str
+phone_number,str
+passbook_last_update_date,str
+joint_account_flag,str
+nri_flag,str
