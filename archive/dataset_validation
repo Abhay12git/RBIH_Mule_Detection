@@ -1,0 +1,25 @@
+import pandas as pd
+
+df = pd.read_parquet(
+    "data/final/baseline_dataset.parquet"
+)
+
+missing = (
+
+    df.isnull()
+
+    .sum()
+
+    .sort_values(
+        ascending=False
+    )
+
+)
+
+missing = missing[
+    missing > 0
+]
+
+print(
+    missing.head(50)
+)
