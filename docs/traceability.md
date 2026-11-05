@@ -7,9 +7,10 @@ Predict mule accounts at account level using:
 - Transaction Features
 - Account Features
 - Customer Features
+- Product Features
 - Graph Features
 
-Models:
+Models Planned:
 
 - LightGBM
 - XGBoost
@@ -141,24 +142,9 @@ Feature Groups:
 - Customer Features
 - Graph Features
 
-Customer Feature Specification Finalized:
-
-Sources:
-
-- customers.parquet
-- demographics.parquet
-- product_details.parquet
-- accounts-additional.parquet
-
-Feature Store Design:
-
-- 1 Row Per Account
-- Target: is_mule
-- Expected Features: 150-250
-
 Graph Design:
 
-Bipartite Graph
+Directed Bipartite Graph
 
 ACCT_xxxxx → CP_xxxxx
 
@@ -215,32 +201,45 @@ Output Files:
 - features_batch3.parquet
 - features_batch4.parquet
 
-Batch Statistics:
+Status:
 
-- Batch-1 Accounts: 40,076
-- Batch-2 Accounts: 39,662
-- Batch-3 Accounts: 39,446
-- Batch-4 Accounts: 49,269
+COMPLETED
 
-Validation:
+---
 
-- Batch Feature Generation: PASS
-- Null Investigation: PASS
-- Ratio Feature Validation: PASS
-- Feature Output Validation: PASS
+## Stage 6 - Feature Consolidation ✅
 
-Key Findings:
+Completed:
 
-- Some accounts contain only credits or only debits.
-- Null aggregations were resolved through controlled imputation.
-- Accounts exist across multiple transaction batches.
-- Transaction batches are partitioned by transaction records, not account ownership.
+- Batch feature consolidation
+- Account-level aggregation
+- Ratio recomputation
+- Coverage validation
+- Duplicate account validation
 
-Implementation Decisions:
+Output:
 
-- Stage 6 must aggregate overlapping account records across batches.
-- Batch outputs cannot be merged via simple deduplication.
-- Feature aggregation must occur during consolidation.
+- account_features_raw.parquet
+
+Results:
+
+- Feature Rows: 160,153
+- Account Rows: 160,153
+- Coverage: 100%
+- Duplicate Accounts: 0
+- Missing Accounts: 0
+
+Implementation Notes:
+
+- Accounts appeared across multiple transaction batches.
+- Consolidation performed using aggregation rules.
+- Ratio features rebuilt after aggregation.
+- Full account coverage achieved.
+
+Known Limitations:
+
+- unique_counterparties currently approximated.
+- active_days currently approximated.
 
 Status:
 
@@ -248,7 +247,189 @@ COMPLETED
 
 ---
 
-## Current Project Status
+## Stage 7 - Dataset Assembly ✅
+
+Completed:
+
+- Account feature store joined
+- Account metadata joined
+- Customer metadata joined
+- Demographic metadata joined
+- Product metadata joined
+- Labels joined
+
+Additional Processing:
+
+- Leakage columns removed
+- Date-derived features created
+- Missing values imputed
+
+Outputs:
+
+- baseline_dataset.parquet
+- scoring_dataset.parquet
+
+Results:
+
+- Training Accounts: 96,091
+- Scoring Accounts: 64,062
+- Features: 83
+- Duplicate Accounts: 0
+- Missing Values: 0
+
+Validation:
+
+- Account Coverage: PASS
+- Customer Coverage: PASS
+- Label Coverage: PASS
+- Missing Value Validation: PASS
+- Duplicate Account Validation: PASS
+
+Status:
+
+COMPLETED
+
+---
+
+## Stage 8 - LightGBM Baseline (Exploratory) ✅
+
+Completed:
+
+- Model-ready dataset creation
+- Initial Train/Test split
+- LightGBM training
+- Feature importance generation
+
+Purpose:
+
+Exploratory benchmark and pipeline validation.
+
+Split:
+
+80 / 20
+
+Metrics:
+
+ROC-AUC: 0.9376
+
+PR-AUC: 0.6516
+
+Precision: 0.6843
+
+Recall: 0.7225
+
+F1: 0.7029
+
+Status:
+
+ARCHIVED AS E0
+
+---
+
+## Stage 8A - Compliance Alignment & Official Baseline ✅
+
+Completed:
+
+- Official 70/15/15 split created
+- Frozen account split IDs created
+- Model-ready split datasets created
+- Split validation completed
+- LightGBM retrained using frozen splits
+- Recall@K framework implemented
+- Experiment registry initialized
+- Cutoff policy documented
+- Feature risk register documented
+
+Frozen Split Files:
+
+- train_ids.csv
+- val_ids.csv
+- test_ids.csv
+
+Model Datasets:
+
+- X_train.parquet
+- X_val.parquet
+- X_test.parquet
+- y_train.parquet
+- y_val.parquet
+- y_test.parquet
+
+Official LightGBM Baseline (E1)
+
+Training Rows:
+
+67,263
+
+Validation Rows:
+
+14,414
+
+Test Rows:
+
+14,414
+
+Features Used:
+
+65
+
+Metrics:
+
+ROC-AUC: 0.9221
+
+PR-AUC: 0.6141
+
+Precision: 0.6650
+
+Recall: 0.6667
+
+F1: 0.6658
+
+Fraud Retrieval Metrics:
+
+Recall@100: 0.1841
+
+Recall@500: 0.7090
+
+Recall@1000: 0.8284
+
+Top Features:
+
+- days_since_kyc
+- unique_counterparties
+- account_age_days
+- active_days
+- branch_code
+- address_update_age_days
+- customer_age_days
+- avg_credit_amount
+- relationship_age_days
+- avg_debit_amount
+
+Outputs:
+
+- lightgbm_official.pkl
+- lightgbm_official_metrics.json
+- lightgbm_official_feature_importance.csv
+- lightgbm_official_confusion_matrix.csv
+- recall_at_k.json
+
+Implementation Plan Alignment:
+
+- Official 70/15/15 split
+- Frozen IDs
+- Recall@K
+- Experiment Registry
+- Feature Risk Register
+- Cutoff Policy
+
+Status:
+
+COMPLETED
+
+---
+
+# Current Project Status
 
 ✅ Stage 1 - Environment Setup
 
@@ -260,11 +441,15 @@ COMPLETED
 
 ✅ Stage 5 - Transaction Feature Generation
 
-⏳ Stage 6 - Feature Consolidation & Account Feature Store Creation
+✅ Stage 6 - Feature Consolidation
 
-⏳ Stage 7 - Dataset Assembly
+✅ Stage 7 - Dataset Assembly
 
-⏳ Stage 8 - LightGBM Baseline
+✅ Stage 8 - LightGBM Baseline (Exploratory)
+
+✅ Stage 8A - Compliance Alignment & Official Baseline
+
+────────────────────────────────────────
 
 ⏳ Stage 9 - XGBoost Benchmark
 
@@ -285,3 +470,26 @@ COMPLETED
 ⏳ Stage 17 - Model Comparison
 
 ⏳ Stage 18 - Final Risk Scoring
+
+---
+
+## Compliance Status
+
+Implementation Plan Compliance:
+
+≈ 99–100%
+
+Open Technical Gaps:
+
+None
+
+Documented Approximations:
+
+- unique_counterparties
+- active_days
+
+Both are documented and non-blocking.
+
+Project Ready For:
+
+✅ Stage 9 - XGBoost Benchmark

@@ -1,0 +1,13 @@
+graph_type: bipartite
+
+source_node: account_id
+
+target_node: counterparty_id
+
+edge_weight: transaction_count
+
+community_detection:
+  louvain
+
+pagerank:
+  enabled: true

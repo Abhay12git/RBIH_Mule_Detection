@@ -65,3 +65,45 @@ two_hop_neighbor_count
 account_id and counterparty_id belong to different namespaces.
 
 Do not merge them into a single node type.
+
+Stage 10 Inputs
+
+397,875,323 Transactions
+
+160,153 Accounts
+
+Counterparty Network
+
+Expected Outputs
+
+graph_edges.parquet
+
+pagerank_features.parquet
+
+community_features.parquet
+Enhanced Edge Attributes
+
+- transaction_count
+- transaction_volume
+- average_amount
+- first_transaction_date
+- last_transaction_date
+- relationship_duration_days
+- edge_weight
+
+Node Mapping
+
+node_mapping.parquet
+
+Created to support:
+
+- GraphSAGE
+- GAT
+
+Graph Statistics
+
+Nodes:
+301,110
+
+Edges:
+3,254,788

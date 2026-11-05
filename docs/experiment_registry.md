@@ -156,6 +156,50 @@ Status
 Pending
 
 ---
+## E4B
+
+Model
+
+LightGBM + Extended Graph Features
+
+Status
+
+Current Best Model
+
+Metrics
+
+ROC-AUC:
+0.9312
+
+PR-AUC:
+0.6932
+
+Precision:
+0.7337
+
+Recall:
+0.7537
+
+F1:
+0.7436
+
+Recall@100:
+0.1965
+
+Recall@500:
+0.8085
+
+Recall@1000:
+0.8781
+
+Notes
+
+Introduced:
+
+- Community transaction features
+- Edge aggregate features
+
+Current production benchmark.
 
 ## E5
 

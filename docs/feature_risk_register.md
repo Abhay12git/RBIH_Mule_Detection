@@ -54,3 +54,49 @@ DROP features must never be used for training.
 
 REVIEW features require business validation
 before production deployment.
+
+## Graph Feature Risk Assessment
+
+SAFE
+
+- out_degree
+- weighted_degree
+- neighbor_count
+- community_id
+- community_size
+- neighbor_degree_mean
+- betweenness_centrality
+- community_activity_score
+
+REVIEW
+
+- pagerank
+- two_hop_neighbor_count
+- neighbor_degree_max
+
+Reason
+
+Potential saturation observed.
+
+Will be evaluated during Stage 13.
+## Graph Feature Assessment
+
+APPROVED
+
+- betweenness_centrality
+- neighbor_degree_mean
+- community_activity_score
+- community_id
+- community_size
+
+REVIEW
+
+- pagerank
+- two_hop_neighbor_count
+- neighbor_degree_max
+
+Reason
+
+Weaker contribution based on LightGBM graph feature importance analysis.
+
+Retained for future evaluation.
