@@ -1,0 +1,7 @@
+{
+  "approved_scripts": [],
+  "graph_data_paths": [],
+  "max_graph_rows": 5000,
+  "max_graph_nodes": 250,
+  "experiment_timeout_seconds": 1800
+}

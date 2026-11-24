@@ -631,6 +631,36 @@ archive/
 5. GAT improved over GraphSAGE but did not exceed E4B.
 
 ---
+# Production Scoring
+
+After model selection, E4B was retrained using all available labelled accounts:
+
+96,091 Accounts
+
+The final model was then applied to:
+
+64,062 RBIH Test Accounts
+
+Outputs:
+
+- submission.csv
+- top_100_accounts.csv
+- top_500_accounts.csv
+- top_1000_accounts.csv
+
+Risk Distribution:
+
+Risk Score > 0.90
+
+226 Accounts
+
+Risk Score > 0.80
+
+347 Accounts
+
+Risk Score > 0.50
+
+713 Accounts
 
 # Final Conclusion
 

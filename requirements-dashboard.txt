@@ -1,0 +1,7 @@
+# Optional dashboard dependencies (keep separate from core ML requirements)
+streamlit>=1.36
+plotly>=5.20
+pandas>=2.0
+networkx>=3.0
+duckdb>=1.0
+pyarrow>=14.0
